@@ -66,9 +66,9 @@ with st.container(border=True):
     agora = datetime.now(fuso_br)
     
     with c1: 
-        st.text_input("Data", value=agora.strftime('%d/%m/%Y'), read_only=True)
+        st.text_input("Data", value=agora.strftime('%d/%m/%Y'), disabled=True)
     with c2: 
-        st.text_input("Hora", value=agora.strftime('%H:%M:%S'), read_only=True)
+        st.text_input("Hora", value=agora.strftime('%H:%M:%S'), disabled=True)
     with c3: 
         op = st.text_input("O.P.")
 
