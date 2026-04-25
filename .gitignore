@@ -1,0 +1,20 @@
+# --- Python e Ambiente Virtual ---
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# --- SEGURANÇA (Obrigatório manter estas linhas) ---
+.streamlit/secrets.toml
+credentials.json
+*.json
+.env
+
+# --- Arquivos do Sistema e IDE ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
