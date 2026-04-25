@@ -62,14 +62,13 @@ with st.expander("Visualizar Instruções de Medição (Referência Rev. 3)"):
 with st.container(border=True):
     c1, c2, c3 = st.columns(3)
     
-    # Puxa o horário de Brasília automaticamente
     fuso_br = pytz.timezone('America/Sao_Paulo')
     agora = datetime.now(fuso_br)
     
     with c1: 
-        st.info(f"Data: {agora.strftime('%d/%m/%Y')}")
+        st.text_input("Data", value=agora.strftime('%d/%m/%Y'), disabled=True)
     with c2: 
-        st.info(f"Hora: {agora.strftime('%H:%M:%S')}")
+        st.text_input("Hora", value=agora.strftime('%H:%M:%S'), disabled=True)
     with c3: 
         op = st.text_input("O.P.")
 
