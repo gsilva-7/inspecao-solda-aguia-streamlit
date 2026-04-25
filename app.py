@@ -3,6 +3,7 @@ from datetime import datetime
 import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import pytz
 
 # 1. CONFIGURAÇÃO DA PÁGINA
 st.set_page_config(
@@ -60,9 +61,17 @@ with st.expander("Visualizar Instruções de Medição (Referência Rev. 3)"):
 # 5. FORMULÁRIO
 with st.container(border=True):
     c1, c2, c3 = st.columns(3)
-    with c1: data = st.date_input("Data", datetime.now())
-    with c2: hora = st.time_input("Hora", datetime.now())
-    with c3: op = st.text_input("O.P.")
+    
+    # Puxa o horário de Brasília automaticamente
+    fuso_br = pytz.timezone('America/Sao_Paulo')
+    agora = datetime.now(fuso_br)
+    
+    with c1: 
+        st.info(f"📅 {agora.strftime('%d/%m/%Y')}")
+    with c2: 
+        st.info(f"🕒 {agora.strftime('%H:%M:%S')}")
+    with c3: 
+        op = st.text_input("O.P.")
 
     st.markdown("---")
     st.subheader("1º PASSO")
@@ -92,8 +101,9 @@ if submit:
         st.warning("⚠️ O.P. e Inspetor são obrigatórios!")
     else:
         linha_para_salvar = [
-            data.strftime("%d/%m/%Y"), hora.strftime("%H:%M:%S"), op, 
-            a1, a2, b_medida, c_distancia, solda_status, inspetor, obs
+            agora.strftime("%d/%m/%Y"), # Pega a data de Brasília
+            agora.strftime("%H:%M:%S"), # Pega a hora de Brasília
+            op, a1, a2, b_medida, c_distancia, solda_status, inspetor, obs
         ]
         try:
             salvar_no_gspread(linha_para_salvar)
