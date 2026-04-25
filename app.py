@@ -67,9 +67,9 @@ with st.container(border=True):
     agora = datetime.now(fuso_br)
     
     with c1: 
-        st.info(f"📅 {agora.strftime('%d/%m/%Y')}")
+        st.info(f"Data: {agora.strftime('%d/%m/%Y')}")
     with c2: 
-        st.info(f"🕒 {agora.strftime('%H:%M:%S')}")
+        st.info(f"Hora: {agora.strftime('%H:%M:%S')}")
     with c3: 
         op = st.text_input("O.P.")
 
